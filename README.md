@@ -3,8 +3,8 @@
 
 # Etc Hosts Management Utility & Go Library
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/txn2/txeh)](https://goreportcard.com/report/github.com/txn2/txeh)
-[![GoDoc](https://godoc.org/github.com/txn2/irsync/txeh?status.svg)](https://godoc.org/github.com/txn2/txeh)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tinder-edwardowens/txeh)](https://goreportcard.com/report/github.com/tinder-edwardowens/txeh)
+[![GoDoc](https://godoc.org/github.com/txn2/irsync/txeh?status.svg)](https://godoc.org/github.com/tinder-edwardowens/txeh)
 
 ### /etc/hosts Management
 
@@ -18,7 +18,7 @@ A computer's [/etc/hosts] file is a powerful utility for developers and system a
 
 ### Install
 
-MacOS [homebrew](https://brew.sh) users can `brew install txn2/tap/txeh`, otherwise see [releases](https://github.com/txn2/txeh/releases) for packages and binaries for a number of distros and architectures including Windows, Linux and Arm based systems.
+MacOS [homebrew](https://brew.sh) users can `brew install txn2/tap/txeh`, otherwise see [releases](https://github.com/tinder-edwardowens/txeh/releases) for packages and binaries for a number of distros and architectures including Windows, Linux and Arm based systems.
 
 Complie and run from source (dependencies are vendored):
 ```
@@ -38,7 +38,7 @@ The txeh CLI application allows command line or scripted access to /etc/hosts fi
  \__/_/\_\___|_| |_| v1.1.0
 
 Add, remove and re-associate hostname entries in your /etc/hosts file.
-Read more including useage as a Go library at https://github.com/txn2/txeh
+Read more including useage as a Go library at https://github.com/tinder-edwardowens/txeh
 
 Usage:
   txeh [flags]
@@ -102,7 +102,7 @@ txeh add 127.1.27.100 dev3.example.com -r ./hosts.test -w ./hosts.test2
 
 **Dependency:**
 ```bash
-go get github.com/txn2/txeh
+go get github.com/tinder-edwardowens/txeh
 ```
 
 **Example Golang Implementation**:
@@ -114,7 +114,7 @@ import (
     "fmt"
     "strings"
 
-    "github.com/txn2/txeh"
+    "github.com/tinder-edwardowens/txeh"
 )
 
 func main() {

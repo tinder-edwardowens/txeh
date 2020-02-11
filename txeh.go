@@ -296,7 +296,11 @@ func ParseHosts(path string) ([]HostFileLine, error) {
 		return nil, err
 	}
 
-	inputNormalized := strings.Replace(string(input), "\r\n", "\n", -1)
+	return ParseHostsFromBytes(input)
+}
+
+func ParseHostsFromBytes(b []byte) ([]HostFileLine, error) {
+	inputNormalized := strings.Replace(string(b), "\r\n", "\n", -1)
 
 	lines := strings.Split(inputNormalized, "\n")
 	dataLines := lines[:len(lines)-1]

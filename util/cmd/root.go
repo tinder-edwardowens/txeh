@@ -7,7 +7,7 @@ import (
 	"regexp"
 
 	"github.com/spf13/cobra"
-	"github.com/txn2/txeh"
+	"github.com/tinder-edwardowens/txeh"
 )
 
 var rootCmd = &cobra.Command{
@@ -20,7 +20,7 @@ var rootCmd = &cobra.Command{
  \__/_/\_\___|_| |_| v` + Version + `
 
 Add, remove and re-associate hostname entries in your /etc/hosts file.
-Read more including useage as a Go library at https://github.com/txn2/txeh`,
+Read more including useage as a Go library at https://github.com/tinder-edwardowens/txeh`,
 	Run: func(cmd *cobra.Command, args []string) {
 		err := cmd.Help()
 		if err != nil {
