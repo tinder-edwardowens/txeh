@@ -300,15 +300,10 @@ func ParseHosts(path string) ([]HostFileLine, error) {
 		return nil, err
 	}
 
-	fileLines, err := ParseHostsFromBytes(input)
-	if err != nil {
-		return nil, err
-	}
-
-	return *fileLines, nil
+	return ParseHostsFromBytes(input)
 }
 
-func ParseHostsFromBytes(b []byte) (*HostFileLines, error) {
+func ParseHostsFromBytes(b []byte) (HostFileLines, error) {
 	inputNormalized := strings.Replace(string(b), "\r\n", "\n", -1)
 
 	lines := strings.Split(inputNormalized, "\n")
@@ -361,9 +356,7 @@ func ParseHostsFromBytes(b []byte) (*HostFileLines, error) {
 
 	}
 
-	hfLines := HostFileLines(hostFileLines)
-
-	return &hfLines, nil
+	return hostFileLines, nil
 }
 
 // removeStringElement removed an element of a string slice
