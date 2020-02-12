@@ -36,6 +36,16 @@ type HostLocations map[string]int
 // HostFileLines
 type HostFileLines []HostFileLine
 
+func (h HostFileLines) String() string {
+	hf := ""
+
+	for _, hfl := range h {
+		hf = hf + fmt.Sprintln(lineFormatter(hfl))
+	}
+
+	return hf
+}
+
 // HostFileLine
 type HostFileLine struct {
 	OriginalLineNum int
@@ -272,13 +282,7 @@ func (h *Hosts) RenderHostsFile() string {
 	h.Lock()
 	defer h.Unlock()
 
-	hf := ""
-
-	for _, hfl := range h.hostFileLines {
-		hf = hf + fmt.Sprintln(lineFormatter(hfl))
-	}
-
-	return hf
+	return h.hostFileLines.String()
 }
 
 // GetHostFileLines
@@ -296,10 +300,15 @@ func ParseHosts(path string) ([]HostFileLine, error) {
 		return nil, err
 	}
 
-	return ParseHostsFromBytes(input)
+	fileLines, err := ParseHostsFromBytes(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return *fileLines, nil
 }
 
-func ParseHostsFromBytes(b []byte) ([]HostFileLine, error) {
+func ParseHostsFromBytes(b []byte) (*HostFileLines, error) {
 	inputNormalized := strings.Replace(string(b), "\r\n", "\n", -1)
 
 	lines := strings.Split(inputNormalized, "\n")
@@ -352,7 +361,9 @@ func ParseHostsFromBytes(b []byte) ([]HostFileLine, error) {
 
 	}
 
-	return hostFileLines, nil
+	hfLines := HostFileLines(hostFileLines)
+
+	return &hfLines, nil
 }
 
 // removeStringElement removed an element of a string slice
